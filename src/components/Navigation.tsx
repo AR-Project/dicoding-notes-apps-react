@@ -8,8 +8,8 @@ type props = {
 export default function Navigation({ onSearchActive, query }: props) {
   return (
     <header>
-      <h1>aiCatat </h1>
-      <form>
+      <h1>ter- <span className="cursive"> Catat</span> </h1>
+      <form id='search-form'>
         <input
           type="text"
           name="search"

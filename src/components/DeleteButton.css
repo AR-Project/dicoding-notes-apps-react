@@ -1,0 +1,20 @@
+.notes-item_delete {
+  border: 1px rgba(255, 211, 211, 0) solid;
+  background-color: rgba(254, 200, 200, 0.03);
+  width: 55px;
+  border-radius: 3px;
+  padding: 15px;
+  cursor: pointer;
+  transition: 180ms ease-in-out;
+  margin-right: 10px;
+}
+
+.notes-item_delete:hover {
+  border: 1px rgb(255, 134, 134) solid;
+  background-color: rgba(254, 63, 63, 0);
+}
+
+
+.notes-item_delete i {
+  color: rgba(255, 189, 189, 0.531);
+}

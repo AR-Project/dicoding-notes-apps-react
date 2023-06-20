@@ -1,0 +1,52 @@
+#note-input-form #title,
+#note-input-form #body,
+#note-input-form #submit {
+  background-color: #1a222c;
+  padding: 7px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  border: 1px rgba(255, 255, 255, 0.414) solid;
+
+}
+
+#note-input-form {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+
+
+#note-input-form #title {
+  height: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+#note-input-form .warning {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+#note-input-form #body {
+  height: 225px;
+}
+
+
+#note-input-form #submit {
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  height: 50px;
+  color: white;
+  background-color: #382113;
+  transition: 140ms ease-in-out;
+}
+
+#note-input-form #submit:hover {
+  background-color: #55331d;
+}

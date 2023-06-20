@@ -1,0 +1,34 @@
+.note {
+  overflow: hidden;
+  padding-bottom: 20px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.note h1 {
+  font-size: 1.6rem;
+}
+
+.note * {
+  word-break: normal;
+  hyphens: auto;
+}
+
+.note p {
+  padding-bottom: 7px;
+  font-size: 0.85rem;
+
+}
+
+.note h3 {
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 100;
+  opacity: 0.5;
+  padding-bottom: 7px;
+}
+
+.red-bg {
+  transition: 150ms ease-in-out;
+  background-color: rgba(255, 165, 165, 0.17);
+}

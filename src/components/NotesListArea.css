@@ -1,0 +1,48 @@
+.notes-container {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+}
+
+.notes-container>h1 {
+  font-family: 'Niconne', cursive;
+  font-size: 3rem;
+  line-height: 2rem;
+  padding-bottom: 20px;
+  color: white;
+
+}
+
+.notes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.hl {
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.4);
+  width: 100%;
+}
+
+.splash-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50vh;
+}
+
+@media screen and (max-width: 1024px) {
+  .notes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .notes {
+    grid-template-columns: 1fr;
+  }
+}

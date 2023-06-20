@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { PreventDefault, HandleChangeEvent } from '../global/types'
 import { NoteContent, SetNotes } from '../global/types'
 
+import './NoteInput.css'
+
 export default function NoteInput({ setNotes }: SetNotes) {
   const DEFAULT_NOTE_STATE: NoteContent = {
     title: "",
@@ -31,31 +33,39 @@ export default function NoteInput({ setNotes }: SetNotes) {
 
   function handleChange(event: HandleChangeEvent): void {
     setCurrentNote((prevNote: NoteContent) => {
+      const isTitleChanged = event.target.name === 'title'
+      const value = event.target.value
       return ({
         ...prevNote,
-        [event.target.name]: event.target.value.slice(0, TITLE_MAX_LENGTH)
+        [event.target.name]: isTitleChanged ? value.slice(0, TITLE_MAX_LENGTH) : value
       })
     })
   }
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form onSubmit={onSubmitHandler} id='note-input-form'>
+      {currentNote.title.length > 5 &&
+        <div className={`warning ${currentNote.title.length > 40 && 'red'}`}>{TITLE_MAX_LENGTH - currentNote.title.length} karakter tersisa</div>
+      }
       <input
         type="text"
         placeholder="Title"
         onChange={handleChange}
+        id="title"
         name="title"
+        className={`${currentNote.title.length > 49 && 'red-border'}`}
         value={currentNote.title}
       />
-      <p>{TITLE_MAX_LENGTH - currentNote.title.length} karakter tersisa</p>
+
 
       <textarea
         placeholder='Tuliskan Catatanmu Disini'
         onChange={handleChange}
         name='body'
+        id='body'
         value={currentNote.body}
       />
-      <button type='submit'>Simpan Catatan</button>
+      <button type='submit' id='submit'>Simpan Catatan</button>
     </form>
   )
 }

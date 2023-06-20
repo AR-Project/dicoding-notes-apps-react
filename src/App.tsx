@@ -1,7 +1,7 @@
 import './App.css'
 import { useState } from 'react'
 import { getInitialData } from './utils'
-import NotesList from './components/NotesList'
+import NotesListArea from './components/NotesListArea'
 import NoteInput from './components/NoteInput'
 import Navigation from './components/Navigation'
 import { HandleChangeEvent, NoteContent, Notes } from './global/types'
@@ -30,8 +30,10 @@ function App() {
   return (
     <>
       <Navigation onSearchActive={onSearchActive} query={query} />
-      <NoteInput setNotes={setNotes} />
-      <NotesList notes={notes} searchQuery={query} onDelete={onDelete} onArchive={onArchive} />
+      <div className="container">
+        <NoteInput setNotes={setNotes} />
+      </div>
+      <NotesListArea notes={notes} searchQuery={query} onDelete={onDelete} onArchive={onArchive} />
     </>
   )
 }
