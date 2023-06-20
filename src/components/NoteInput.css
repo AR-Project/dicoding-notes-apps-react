@@ -16,8 +16,6 @@
   position: relative;
 }
 
-
-
 #note-input-form #title {
   height: 50px;
   font-size: 1.1rem;
@@ -36,7 +34,6 @@
   height: 225px;
 }
 
-
 #note-input-form #submit {
   font-size: 1rem;
   font-weight: 600;
@@ -49,4 +46,13 @@
 
 #note-input-form #submit:hover {
   background-color: #55331d;
+}
+
+.red-border {
+  border: 1px solid rgb(251, 52, 52) !important;
+}
+
+.red {
+  color: rgb(251, 52, 52);
+  font-weight: 600;
 }

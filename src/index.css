@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Niconne&display=swap');
 
-/* 
-font-family: 'Bitter', serif;
-font-family: 'Niconne', cursive;
-*/
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,42 +7,6 @@ font-family: 'Niconne', cursive;
   /* background-color: #0d1117; */
   color: rgb(162, 175, 175);
   font-family: 'Bitter', serif;
-}
-
-.red {
-  color: rgb(251, 52, 52);
-  font-weight: 600;
-}
-
-.red-border {
-  border: 1px solid rgb(251, 52, 52);
-}
-
-header {
-  background-color: #1b222d;
-  /* border: 1px white solid; */
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  padding: 0 20px;
-}
-
-header h1 {
-  font-size: 1.2rem;
-}
-
-.cursive {
-  font-family: 'Niconne', cursive;
-  font-size: 2rem;
-}
-
-#search {
-  width: 300px;
-  font-size: 1.1rem;
-  background-color: #3f4b5e;
-  padding: 7px;
 }
 
 .container {

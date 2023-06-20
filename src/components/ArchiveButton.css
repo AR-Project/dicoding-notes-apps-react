@@ -11,9 +11,7 @@
 .notes-item_archive:hover {
   border: 1px rgba(255, 245, 165, 0.314) solid;
   background-color: rgba(247, 255, 177, 0.202);
-
 }
-
 
 .notes-item_archive i {
   color: rgba(240, 240, 240, 0.344);

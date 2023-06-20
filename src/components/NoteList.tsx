@@ -1,4 +1,3 @@
-import React from 'react'
 import { Notes } from '../global/types'
 import NoteItem from './NoteItem'
 
@@ -8,7 +7,6 @@ type props = {
   onDelete: (id: number) => void
   onArchive: (id: number) => void
 }
-
 
 export default function NoteList({ title, notes, onDelete, onArchive }: props) {
 

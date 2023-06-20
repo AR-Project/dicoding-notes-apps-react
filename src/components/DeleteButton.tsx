@@ -13,7 +13,8 @@ export default function DeleteButton({ id, onDelete, onMouseEnter, onMouseLeave 
       className='notes-item_delete'
       onClick={() => onDelete(id)}
       onMouseEnter={() => onMouseEnter()}
-      onMouseLeave={() => onMouseLeave()}
-    ><i className="fa-solid fa-trash fa-lg" ></i></button>
+      onMouseLeave={() => onMouseLeave()}>
+      <i className="fa-solid fa-trash fa-lg" ></i>
+    </button>
   )
 }

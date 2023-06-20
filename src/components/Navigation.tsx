@@ -1,4 +1,5 @@
 import { HandleChangeEvent } from '../global/types'
+import "./Navigation.css"
 
 type props = {
   onSearchActive: (event: HandleChangeEvent) => void

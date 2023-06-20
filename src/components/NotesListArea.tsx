@@ -1,5 +1,4 @@
 import { Notes } from '../global/types'
-import NoteItem from './NoteItem'
 import NoteList from './NoteList'
 import './NotesListArea.css'
 
@@ -11,7 +10,7 @@ type props = {
 }
 
 export default function NotesListArea({ notes, searchQuery, onDelete, onArchive }: props) {
-  const noResult = (
+  const noResultContent = (
     <div className="splash-message">
       <h1>Aduh, nggak ketemu...</h1>
       <p>Mungkin bisa cari dengan kata kunci lain...?</p>
@@ -45,7 +44,7 @@ export default function NotesListArea({ notes, searchQuery, onDelete, onArchive 
     const searchResult: Notes = notes.filter((note) => note.title.toLowerCase().includes(searchQuery))
 
     if (isSearchActive) {
-      if (searchResult.length === 0) return noResult
+      if (searchResult.length === 0) return noResultContent
       return notesSpliter(searchResult)
     }
     if (isNotesEmpty) return noNotesContent

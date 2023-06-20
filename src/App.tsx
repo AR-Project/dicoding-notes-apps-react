@@ -4,7 +4,7 @@ import { getInitialData } from './utils'
 import NotesListArea from './components/NotesListArea'
 import NoteInput from './components/NoteInput'
 import Navigation from './components/Navigation'
-import { HandleChangeEvent, NoteContent, Notes } from './global/types'
+import { HandleChangeEvent } from './global/types'
 
 
 function App() {

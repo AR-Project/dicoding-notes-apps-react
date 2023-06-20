@@ -45,7 +45,9 @@ export default function NoteInput({ setNotes }: SetNotes) {
   return (
     <form onSubmit={onSubmitHandler} id='note-input-form'>
       {currentNote.title.length > 5 &&
-        <div className={`warning ${currentNote.title.length > 40 && 'red'}`}>{TITLE_MAX_LENGTH - currentNote.title.length} karakter tersisa</div>
+        <div className={`warning ${currentNote.title.length > 40 && 'red'}`}>
+          {TITLE_MAX_LENGTH - currentNote.title.length} karakter tersisa
+        </div>
       }
       <input
         type="text"
@@ -56,7 +58,6 @@ export default function NoteInput({ setNotes }: SetNotes) {
         className={`${currentNote.title.length > 49 && 'red-border'}`}
         value={currentNote.title}
       />
-
 
       <textarea
         placeholder='Tuliskan Catatanmu Disini'
