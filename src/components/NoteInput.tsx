@@ -20,7 +20,7 @@ export default function NoteInput({ setNotes }: SetNotes) {
       return [
         ...prevNotes,
         {
-          id: +new Date(),
+          id: (+new Date()).toString(),
           title: currentNote.title,
           body: currentNote.body,
           createdAt: new Date().toISOString(),

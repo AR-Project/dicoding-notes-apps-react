@@ -5,8 +5,8 @@ import './NotesListArea.css'
 type props = {
   notes: Notes,
   searchQuery: string,
-  onDelete: (id: number) => void
-  onArchive: (id: number) => void
+  onDelete: (id: string) => void
+  onArchive: (id: string) => void
 }
 
 export default function NotesListArea({ notes, searchQuery, onDelete, onArchive }: props) {

@@ -1,8 +1,8 @@
 import "./DeleteButton.css"
 
 type props = {
-  id: number,
-  onDelete: (id: number) => void
+  id: string,
+  onDelete: (id: string) => void
   onMouseEnter: () => void
   onMouseLeave: () => void
 }

@@ -1,6 +1,6 @@
 import './App.css'
 import { useState } from 'react'
-import { getInitialData } from './utils'
+import { getAllNotes } from './utils'
 import NotesListArea from './components/NotesListArea'
 import NoteInput from './components/NoteInput'
 import Navigation from './components/Navigation'
@@ -9,14 +9,14 @@ import { HandleChangeEvent } from './global/types'
 
 function App() {
 
-  const [notes, setNotes] = useState(getInitialData())
+  const [notes, setNotes] = useState(getAllNotes())
   const [query, setQuery] = useState("")
 
-  function onDelete(id: number): void {
+  function onDelete(id: string): void {
     setNotes(prevNotes => prevNotes.filter(note => note.id !== id))
   }
 
-  function onArchive(id: number): void {
+  function onArchive(id: string): void {
     setNotes(prevNotes => prevNotes.map(note => {
       return note.id === id ?
         { ...note, archived: !note.archived } : note

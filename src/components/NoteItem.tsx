@@ -8,8 +8,8 @@ import { useState } from 'react'
 
 type props = {
   note: Note,
-  onDelete: (id: number) => void
-  onArchive: (id: number) => void
+  onDelete: (id: string) => void
+  onArchive: (id: string) => void
 }
 
 export default function NoteItem({ note, onDelete, onArchive }: props) {

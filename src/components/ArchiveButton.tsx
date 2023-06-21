@@ -1,8 +1,8 @@
 import "./ArchiveButton.css"
 
 type props = {
-  id: number,
-  onArchive: (id: number) => void
+  id: string,
+  onArchive: (id: string) => void
 }
 
 export default function ArchiveButton({ id, onArchive }: props) {

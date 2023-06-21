@@ -4,8 +4,8 @@ import NoteItem from './NoteItem'
 type props = {
   title: string,
   notes: Notes,
-  onDelete: (id: number) => void
-  onArchive: (id: number) => void
+  onDelete: (id: string) => void
+  onArchive: (id: string) => void
 }
 
 export default function NoteList({ title, notes, onDelete, onArchive }: props) {
