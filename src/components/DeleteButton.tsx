@@ -1,4 +1,5 @@
 import "./DeleteButton.css"
+import PropTypes from 'prop-types';
 
 type props = {
   id: string,
@@ -7,7 +8,7 @@ type props = {
   onMouseLeave: () => void
 }
 
-export default function DeleteButton({ id, onDelete, onMouseEnter, onMouseLeave }: props) {
+function DeleteButton({ id, onDelete, onMouseEnter, onMouseLeave }: props) {
   return (
     <button
       className='notes-item_delete'
@@ -18,3 +19,12 @@ export default function DeleteButton({ id, onDelete, onMouseEnter, onMouseLeave 
     </button>
   )
 }
+
+DeleteButton.proptypes = {
+  id: PropTypes.string,
+  onDelete: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired
+}
+
+export default DeleteButton

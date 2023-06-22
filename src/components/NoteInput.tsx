@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { PreventDefault, HandleChangeEvent } from '../global/types'
 import { NoteContent, SetNotes } from '../global/types'
-
+import PropTypes from 'prop-types';
 import './NoteInput.css'
 
-export default function NoteInput({ setNotes }: SetNotes) {
+function NoteInput({ setNotes }: SetNotes) {
   const DEFAULT_NOTE_STATE: NoteContent = {
     title: "",
     body: ""
@@ -70,3 +70,9 @@ export default function NoteInput({ setNotes }: SetNotes) {
     </form>
   )
 }
+
+NoteInput.propTypes = {
+  setNotes: PropTypes.func.isRequired
+}
+
+export default NoteInput

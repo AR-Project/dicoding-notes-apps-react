@@ -1,11 +1,12 @@
 import "./ArchiveButton.css"
+import PropTypes from 'prop-types';
 
 type props = {
   id: string,
   onArchive: (id: string) => void
 }
 
-export default function ArchiveButton({ id, onArchive }: props) {
+function ArchiveButton({ id, onArchive }: props) {
   return (
     <button
       className='notes-item_archive'
@@ -14,3 +15,10 @@ export default function ArchiveButton({ id, onArchive }: props) {
     </button>
   )
 }
+
+ArchiveButton.propTypes = {
+  id: PropTypes.string,
+  onArchive: PropTypes.func.isRequired,
+}
+
+export default ArchiveButton

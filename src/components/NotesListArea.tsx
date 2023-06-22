@@ -1,6 +1,7 @@
 import { Notes } from '../global/types'
 import NoteList from './NoteList'
 import './NotesListArea.css'
+import PropTypes from 'prop-types';
 
 type props = {
   notes: Notes,
@@ -9,7 +10,7 @@ type props = {
   onArchive: (id: string) => void
 }
 
-export default function NotesListArea({ notes, searchQuery, onDelete, onArchive }: props) {
+function NotesListArea({ notes, searchQuery, onDelete, onArchive }: props) {
   const noResultContent = (
     <div className="splash-message">
       <h1>Aduh, nggak ketemu...</h1>
@@ -30,9 +31,9 @@ export default function NotesListArea({ notes, searchQuery, onDelete, onArchive 
     const archivedNotes = notes.filter((note) => note.archived)
     return (
       <div className="notes-container">
-        <NoteList title='My Notes' notes={activeNotes} onDelete={onDelete} onArchive={onArchive} />
+        <NoteList componentTitle='My Notes' notes={activeNotes} onDelete={onDelete} onArchive={onArchive} />
         <div className="hl"></div>
-        <NoteList title='Archived' notes={archivedNotes} onDelete={onDelete} onArchive={onArchive} />
+        <NoteList componentTitle='Archived' notes={archivedNotes} onDelete={onDelete} onArchive={onArchive} />
       </div>
     )
   }
@@ -57,3 +58,20 @@ export default function NotesListArea({ notes, searchQuery, onDelete, onArchive 
     </div>
   )
 }
+
+NotesListArea.propTypes = {
+  notes: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      archived: PropTypes.bool.isRequired,
+    })
+  ),
+  searchQuery: PropTypes.string,
+  onDelete: PropTypes.func.isRequired,
+  onArchive: PropTypes.func.isRequired
+}
+
+export default NotesListArea

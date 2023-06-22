@@ -1,14 +1,15 @@
 import { Notes } from '../global/types'
 import NoteItem from './NoteItem'
+import PropTypes from 'prop-types';
 
 type props = {
-  title: string,
+  componentTitle: string,
   notes: Notes,
   onDelete: (id: string) => void
   onArchive: (id: string) => void
 }
 
-export default function NoteList({ title, notes, onDelete, onArchive }: props) {
+function NoteList({ componentTitle, notes, onDelete, onArchive }: props) {
 
   function notesMapper(notes: Notes): JSX.Element[] {
     return notes.map((note) => (
@@ -18,10 +19,27 @@ export default function NoteList({ title, notes, onDelete, onArchive }: props) {
 
   return (
     <>
-      <h1>{title}</h1>
+      <h1>{componentTitle}</h1>
       <div className="notes">
         {notesMapper(notes)}
       </div>
     </>
   )
 }
+
+NoteList.propTypes = {
+  componentTitle: PropTypes.string.isRequired,
+  notes: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      archived: PropTypes.bool.isRequired,
+    })
+  ),
+  onDelete: PropTypes.func.isRequired,
+  onArchive: PropTypes.func.isRequired
+}
+
+export default NoteList

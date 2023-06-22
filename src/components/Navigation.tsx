@@ -1,12 +1,13 @@
 import { HandleChangeEvent } from '../global/types'
 import "./Navigation.css"
+import PropTypes from 'prop-types';
 
 type props = {
   onSearchActive: (event: HandleChangeEvent) => void
   query: string
 }
 
-export default function Navigation({ onSearchActive, query }: props) {
+function Navigation({ onSearchActive, query }: props) {
   return (
     <header>
       <h1>ter- <span className="cursive"> Catat</span> </h1>
@@ -22,3 +23,10 @@ export default function Navigation({ onSearchActive, query }: props) {
     </header>
   )
 }
+
+Navigation.propTypes = {
+  onSearchActive: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired
+}
+
+export default Navigation

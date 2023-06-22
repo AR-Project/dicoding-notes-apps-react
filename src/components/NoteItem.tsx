@@ -5,6 +5,7 @@ import DeleteButton from './DeleteButton'
 import ArchiveButton from './ArchiveButton'
 import './NoteItem.css'
 import { useState } from 'react'
+import PropTypes from 'prop-types';
 
 type props = {
   note: Note,
@@ -12,7 +13,7 @@ type props = {
   onArchive: (id: string) => void
 }
 
-export default function NoteItem({ note, onDelete, onArchive }: props) {
+function NoteItem({ note, onDelete, onArchive }: props) {
   const [warning, setWarning] = useState("")
 
   function onMouseEnter() {
@@ -33,3 +34,17 @@ export default function NoteItem({ note, onDelete, onArchive }: props) {
     </div>
   )
 }
+
+NoteItem.propTypes = {
+  note: PropTypes.exact({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    archived: PropTypes.bool.isRequired,
+  }),
+  onDelete: PropTypes.func.isRequired,
+  onArchive: PropTypes.func.isRequired
+}
+
+export default NoteItem
