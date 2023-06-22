@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { PreventDefault, HandleChangeEvent } from '../global/types'
 import { NoteContent, SetNotes } from '../global/types'
 import PropTypes from 'prop-types';
-import './NoteInput.css'
+import '../styles/NoteInput.css'
 
 function NoteInput({ setNotes }: SetNotes) {
   const DEFAULT_NOTE_STATE: NoteContent = {

@@ -1,4 +1,4 @@
-import "./DeleteButton.css"
+import "../styles/DeleteButton.css"
 import PropTypes from 'prop-types';
 
 type props = {

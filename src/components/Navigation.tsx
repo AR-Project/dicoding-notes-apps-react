@@ -1,5 +1,5 @@
 import { HandleChangeEvent } from '../global/types'
-import "./Navigation.css"
+import "../styles/Navigation.css"
 import PropTypes from 'prop-types';
 
 type props = {

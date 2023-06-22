@@ -3,7 +3,7 @@ import { showFormattedDate } from '../utils'
 import { Note } from '../global/types'
 import DeleteButton from './DeleteButton'
 import ArchiveButton from './ArchiveButton'
-import './NoteItem.css'
+import '../styles/NoteItem.css'
 import { useState } from 'react'
 import PropTypes from 'prop-types';
 

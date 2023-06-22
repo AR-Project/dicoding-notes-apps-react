@@ -1,4 +1,4 @@
-import "./ArchiveButton.css"
+import "../styles/ArchiveButton.css"
 import PropTypes from 'prop-types';
 
 type props = {

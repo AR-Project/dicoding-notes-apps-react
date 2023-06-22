@@ -1,6 +1,6 @@
 import { Notes } from '../global/types'
 import NoteList from './NoteList'
-import './NotesListArea.css'
+import '../styles/NotesListArea.css'
 import PropTypes from 'prop-types';
 
 type props = {
