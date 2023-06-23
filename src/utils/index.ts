@@ -65,6 +65,8 @@ export function getArchivedNotes() {
 }
 
 export function addNote({ title, body }: NoteContent) {
+  console.log(`Note Added --- ${title}`);
+
   notes = [...notes, {
     id: `notes-${+new Date()}`, title: title || '(untitled)', body, createdAt: new Date().toISOString(), archived: false,
   }];
@@ -72,6 +74,13 @@ export function addNote({ title, body }: NoteContent) {
 
 export function deleteNote(id: string) {
   notes = notes.filter((note) => note.id !== id);
+}
+
+export function changeNoteArchiveStatus(id: string): void {
+  notes = notes.map(note => {
+    return note.id === id ?
+      { ...note, archived: !note.archived } : note
+  })
 }
 
 export function archiveNote(id: string) {

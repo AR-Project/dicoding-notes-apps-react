@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import { PreventDefault, HandleChangeEvent } from '../global/types'
-import { NoteContent, SetNotes } from '../global/types'
+import { NoteContent } from '../global/types'
 import PropTypes from 'prop-types';
 import '../styles/NoteInput.css'
 
-function NoteInput({ setNotes }: SetNotes) {
+type props = {
+  addNote: (noteContent: NoteContent) => void
+}
+
+function NoteInput({ addNote }: props) {
   const DEFAULT_NOTE_STATE: NoteContent = {
     title: "",
     body: ""
@@ -16,18 +20,7 @@ function NoteInput({ setNotes }: SetNotes) {
 
   function onSubmitHandler(event: PreventDefault) {
     event.preventDefault()
-    setNotes((prevNotes) => {
-      return [
-        ...prevNotes,
-        {
-          id: (+new Date()).toString(),
-          title: currentNote.title,
-          body: currentNote.body,
-          createdAt: new Date().toISOString(),
-          archived: false
-        }
-      ]
-    })
+    addNote(currentNote)
     setCurrentNote(DEFAULT_NOTE_STATE);
   }
 
@@ -72,7 +65,7 @@ function NoteInput({ setNotes }: SetNotes) {
 }
 
 NoteInput.propTypes = {
-  setNotes: PropTypes.func.isRequired
+  addNote: PropTypes.func.isRequired
 }
 
 export default NoteInput
