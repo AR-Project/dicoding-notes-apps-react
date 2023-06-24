@@ -69,7 +69,7 @@ NotesListArea.propTypes = {
   searchQuery: PropTypes.string,
   onDelete: PropTypes.func.isRequired,
   onArchive: PropTypes.func.isRequired,
-  isArchivePage: PropTypes.string
+  isArchivePage: PropTypes.bool
 }
 
 export default NotesListArea
