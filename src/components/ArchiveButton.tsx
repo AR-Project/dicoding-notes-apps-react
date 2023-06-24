@@ -11,7 +11,7 @@ function ArchiveButton({ id, onArchive }: props) {
     <button
       className='notes-item_archive'
       onClick={() => onArchive(id)}>
-      <i className="fa-solid fa-box-archive fa-2xl"></i>
+      <i className="fa-solid fa-box-archive fa-lg"></i>
     </button>
   )
 }

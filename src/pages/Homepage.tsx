@@ -1,27 +1,35 @@
 import { useState } from 'react'
-import { getAllNotes, deleteNote, changeNoteArchiveStatus } from '../utils'
+import PropTypes from 'prop-types';
+
+import { deleteNote, changeNoteArchiveStatus, getActiveNotes } from '../utils'
 import NotesListArea from '../components/NotesListArea'
 
 type props = {
-  query: string
+  query: string,
 }
 
-export default function Homepage({ query }: props) {
-  const [notes, setNotes] = useState(getAllNotes())
+function Homepage({ query }: props) {
+  const [notes, setNotes] = useState(getActiveNotes())
 
   function onDelete(id: string): void {
     deleteNote(id)
-    setNotes(() => getAllNotes())
+    setNotes(() => getActiveNotes())
   }
 
   function onArchive(id: string): void {
     changeNoteArchiveStatus(id)
-    setNotes(() => getAllNotes())
+    setNotes(() => getActiveNotes())
   }
 
   return (
     <>
-      <NotesListArea notes={notes} searchQuery={query} onDelete={onDelete} onArchive={onArchive} />
+      <NotesListArea notes={notes != undefined ? notes : []} searchQuery={query} onDelete={onDelete} onArchive={onArchive} />
     </>
   )
 }
+
+Homepage.propTypes = {
+  query: PropTypes.string
+}
+
+export default Homepage

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 type props = {
   id: string,
   onDelete: (id: string) => void
-  onMouseEnter: () => void
-  onMouseLeave: () => void
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
 function DeleteButton({ id, onDelete, onMouseEnter, onMouseLeave }: props) {
@@ -13,8 +13,8 @@ function DeleteButton({ id, onDelete, onMouseEnter, onMouseLeave }: props) {
     <button
       className='notes-item_delete'
       onClick={() => onDelete(id)}
-      onMouseEnter={() => onMouseEnter()}
-      onMouseLeave={() => onMouseLeave()}>
+      onMouseEnter={() => onMouseEnter !== undefined && onMouseEnter()}
+      onMouseLeave={() => onMouseLeave !== undefined && onMouseLeave()}>
       <i className="fa-solid fa-trash fa-lg" ></i>
     </button>
   )

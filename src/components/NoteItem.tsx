@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 
 import { showFormattedDate } from '../utils'
 import { Note } from '../global/types'
@@ -26,7 +27,7 @@ function NoteItem({ note, onDelete, onArchive }: props) {
 
   return (
     <div className={`note ${warning}`}>
-      <h1>{note.title}</h1>
+      <h1><Link to={`/note/${note.id}`}>{note.title}</Link></h1>
       <h3>{showFormattedDate(note.createdAt)}</h3>
       <p>{note.body}</p>
       <DeleteButton id={note.id} onDelete={onDelete} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />
