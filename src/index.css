@@ -4,7 +4,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* background-color: #0d1117; */
   color: rgb(162, 175, 175);
   font-family: 'Bitter', serif;
 }
@@ -12,7 +11,8 @@
 .container {
   padding: 30px 20px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
   background-color: #0d1117;
 }

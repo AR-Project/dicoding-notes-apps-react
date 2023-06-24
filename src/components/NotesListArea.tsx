@@ -1,15 +1,18 @@
 import { Notes } from '../global/types'
 import NoteList from './NoteList'
-import './NotesListArea.css'
+import '../styles/NotesListArea.css'
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 type props = {
   notes: Notes,
   searchQuery: string,
-  onDelete: (id: number) => void
-  onArchive: (id: number) => void
+  onDelete: (id: string) => void
+  onArchive: (id: string) => void
+  isArchivePage?: boolean
 }
 
-export default function NotesListArea({ notes, searchQuery, onDelete, onArchive }: props) {
+function NotesListArea({ notes, searchQuery, onDelete, onArchive, isArchivePage = false }: props) {
   const noResultContent = (
     <div className="splash-message">
       <h1>Aduh, nggak ketemu...</h1>
@@ -19,20 +22,15 @@ export default function NotesListArea({ notes, searchQuery, onDelete, onArchive 
 
   const noNotesContent = (
     <div className="splash-message">
-      <h1>Catatan Kosong</h1>
-      <p>Yuk, buat catatan!</p>
-      <p>Isi judul, isi catatan, pencet "simpan catatan"</p>
+      <h1>{isArchivePage ? `Arsip` : `Catatan`} Kosong</h1>
+      <p>Yuk, <Link to='/new'>buat baru!</Link> </p>
     </div>
   )
 
-  function notesSpliter(notes: Notes): JSX.Element {
-    const activeNotes = notes.filter((note) => !note.archived)
-    const archivedNotes = notes.filter((note) => note.archived)
+  function notesMapper(notes: Notes): JSX.Element {
     return (
       <div className="notes-container">
-        <NoteList title='My Notes' notes={activeNotes} onDelete={onDelete} onArchive={onArchive} />
-        <div className="hl"></div>
-        <NoteList title='Archived' notes={archivedNotes} onDelete={onDelete} onArchive={onArchive} />
+        <NoteList componentTitle={isArchivePage ? `Archive` : `My Notes`} notes={notes} onDelete={onDelete} onArchive={onArchive} />
       </div>
     )
   }
@@ -45,10 +43,10 @@ export default function NotesListArea({ notes, searchQuery, onDelete, onArchive 
 
     if (isSearchActive) {
       if (searchResult.length === 0) return noResultContent
-      return notesSpliter(searchResult)
+      return notesMapper(searchResult)
     }
     if (isNotesEmpty) return noNotesContent
-    return notesSpliter(notes)
+    return notesMapper(notes)
   }
 
   return (
@@ -57,3 +55,21 @@ export default function NotesListArea({ notes, searchQuery, onDelete, onArchive 
     </div>
   )
 }
+
+NotesListArea.propTypes = {
+  notes: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      archived: PropTypes.bool.isRequired,
+    })
+  ),
+  searchQuery: PropTypes.string,
+  onDelete: PropTypes.func.isRequired,
+  onArchive: PropTypes.func.isRequired,
+  isArchivePage: PropTypes.string
+}
+
+export default NotesListArea

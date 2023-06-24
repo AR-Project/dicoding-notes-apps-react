@@ -3,8 +3,14 @@ export type NoteContent = {
   body: string
 }
 
+export type NoteContentEdit = {
+  id: string
+  title: string
+  body: string
+}
+
 export type Note = {
-  id: number,
+  id: string,
   title: string,
   body: string,
   createdAt: string
