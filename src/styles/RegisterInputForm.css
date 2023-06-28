@@ -1,0 +1,33 @@
+#register-input-form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 15px;
+
+}
+
+#register-input-form #name,
+#register-input-form #email,
+#register-input-form #password,
+#register-input-form #confirm-password,
+#register-input-form #submit {
+  background-color: #1a222c;
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px rgba(255, 255, 255, 0.414) solid;
+}
+
+#register-input-form #submit {
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  height: 50px;
+  color: white;
+  background-color: #382113;
+  transition: 140ms ease-in-out;
+}
+
+#register-input-form #submit:hover {
+  background-color: #55331d;
+}

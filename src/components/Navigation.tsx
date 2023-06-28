@@ -7,12 +7,13 @@ type props = {
   onSearchActive: (event: HandleChangeEvent) => void
   query: string
   clearQuery: () => void
+  authedUser: null | string
 }
 
-function Navigation({ onSearchActive, query, clearQuery }: props) {
+function Navigation({ onSearchActive, query, clearQuery, authedUser }: props) {
   const location = useLocation()
 
-  const enabledSearchLocation = ["/", "/archive"]
+  const enabledSearchLocation = ["/active", "/archive"]
 
   return (
     <header>
@@ -25,29 +26,38 @@ function Navigation({ onSearchActive, query, clearQuery }: props) {
           </Link>
         </li>
         <div className="vertical-lines"></div>
-        <li>
-          <Link
-            onClick={() => clearQuery()}
-            to="/new"
-            style={{
-              color: 'orange',
-              borderRadius: '5px',
-              padding: '5px'
-            }}
-          >
-            <i
-              className="fa-regular fa-square-plus"
-              style={{
-                color: 'orange',
-                paddingRight: '5px'
-              }}>
-            </i>
-            Buat Catatan
-          </Link>
-        </li>
-        <li>
-          <Link onClick={() => clearQuery()} to="/archive">Archive</Link>
-        </li>
+
+        {authedUser === null ?
+          <>
+            <Link to="/register">Register</Link>
+          </> :
+          <>
+            <li>
+              <Link
+                onClick={() => clearQuery()}
+                to="/new"
+                style={{
+                  color: 'orange',
+                  borderRadius: '5px',
+                  padding: '5px'
+                }}
+              >
+                <i
+                  className="fa-regular fa-square-plus"
+                  style={{
+                    color: 'orange',
+                    paddingRight: '5px'
+                  }}>
+                </i>
+                Buat Catatan
+              </Link>
+            </li>
+            <li>
+              <Link onClick={() => clearQuery()} to="/archive">Archive</Link>
+            </li>
+          </>
+        }
+
       </ul>
       {enabledSearchLocation.includes(location.pathname) &&
         <form id='search-form'>
@@ -72,7 +82,8 @@ function Navigation({ onSearchActive, query, clearQuery }: props) {
 Navigation.propTypes = {
   onSearchActive: PropTypes.func.isRequired,
   query: PropTypes.string.isRequired,
-  clearQuery: PropTypes.func.isRequired
+  clearQuery: PropTypes.func.isRequired,
+  authedUser: PropTypes.any
 }
 
 export default Navigation
