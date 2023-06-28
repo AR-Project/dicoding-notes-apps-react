@@ -33,3 +33,14 @@ export type Notes = Note[]
 export type SetNotes = {
   setNotes: React.Dispatch<React.SetStateAction<Notes>>
 }
+
+export type LoginPayload = {
+  email: string
+  password: string
+}
+
+export type RegisterPayload = {
+  name: string
+  email: string
+  password: string
+}

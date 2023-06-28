@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
 import Navigation from './components/Navigation'
 
+import Login from './pages/Login'
+import Register from './pages/Register'
 import Homepage from './pages/Homepage'
 import NewNote from './pages/NewNote'
 import NoteDetails from './pages/NoteDetails'
@@ -37,10 +39,13 @@ function App() {
       <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} />
       <main>
         <Routes>
-          <Route path="/" element={<Homepage query={query} />} />
+          <Route path='/' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          {/* <Route path="/" element={<Homepage query={query} />} />
           <Route path="/new" element={<NewNote />} />
           <Route path="/note/:id" element={<NoteDetails />} />
           <Route path="/archive" element={<ArchivePage query={query} />} />
+           */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>
