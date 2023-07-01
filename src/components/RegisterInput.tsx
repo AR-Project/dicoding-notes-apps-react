@@ -3,12 +3,14 @@ import { RegisterPayload } from '../global/types'
 import { PreventDefault, HandleChangeEvent } from '../global/types'
 
 import "../styles/RegisterInputForm.css"
+import { useNavigate } from 'react-router-dom'
 
 type props = {
   register: (payload: RegisterPayload) => Promise<void>
 }
 
 export default function RegisterInput({ register }: props) {
+  const navigate = useNavigate()
   const DEFAULT_REGISTER_INPUT_STATE: RegisterPayload = {
     name: "",
     email: "",
@@ -31,6 +33,7 @@ export default function RegisterInput({ register }: props) {
   function onSubmitHandler(event: PreventDefault) {
     event.preventDefault()
     register(registerPayload)
+    navigate('/')
   }
 
 

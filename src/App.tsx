@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
 import Navigation from './components/Navigation'
 
@@ -11,16 +11,20 @@ import NoteDetails from './pages/NoteDetails'
 import ArchivePage from './pages/Archived'
 import PageNotFound from './pages/PageNotFound'
 
-import { HandleChangeEvent } from './global/types'
+import { HandleChangeEvent, IauthedUser } from './global/types'
+
+import { putAccessToken, getUserLogged } from './utils'
 
 function App() {
-  const [authedUser, setAuthedUser] = useState(null)
+  const [authedUser, setAuthedUser] = useState<IauthedUser | null>(null)
+  const [initializing, setInitializing] = useState(true)
 
   const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get('title');
 
   const [query, setQuery] = useState(title !== null ? title : "")
 
+  const username = authedUser !== null ? authedUser.name : ''
 
   function changeSearchParams(keyword: string) {
     setSearchParams({ title: keyword })
@@ -35,14 +39,42 @@ function App() {
     setQuery("")
   }
 
+  async function onLoginSuccess({ accessToken }: { accessToken: string }) {
+    putAccessToken(accessToken);
+    const { data } = await getUserLogged();
+    setAuthedUser(data);
+  }
+
+  function onLogout() {
+    setAuthedUser(null);
+    putAccessToken('')
+  }
+
+  useEffect(() => {
+    getUserLogged().then(({ data }) => {
+      setAuthedUser(data);
+      setInitializing(false)
+    })
+
+  }, [])
+
+  if (initializing === true) {
+    return <>
+      <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} />
+      <div className="container">
+        <h1>loading</h1>
+
+      </div>
+    </>
+  }
+
   if (authedUser == null) {
     return (
       <>
-        <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} />
+        <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} />
         <Routes>
-          <Route path='/' element={<Login />} />
+          <Route path='/*' element={<Login loginSuccess={onLoginSuccess} />} />
           <Route path='/register' element={<Register />} />
-          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </>
 
@@ -51,7 +83,7 @@ function App() {
 
   return (
     <>
-      <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} />
+      <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} username={username} />
       <main>
         <Routes>
           <Route path='/' element={<div className='container'><h2>Dalam pengembangan</h2></div>} />
