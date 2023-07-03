@@ -86,7 +86,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Homepage query={query} />} />
-          {/*<Route path="/new" element={<NewNote />} />
+          <Route path="/new" element={<NewNote />} />
+          {/*
           <Route path="/note/:id" element={<NoteDetails />} />
                      */}
           <Route path="/archive" element={<ArchivePage query={query} />} />

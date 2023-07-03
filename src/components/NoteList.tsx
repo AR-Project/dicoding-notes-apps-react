@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 type props = {
   componentTitle: string,
   notes: Notes,
-  onDelete: (id: string) => void
+  onDelete: (id: string) => Promise<void>
   onArchive: (id: string, status: boolean) => Promise<void>
 }
 

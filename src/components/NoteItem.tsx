@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 
 type props = {
   note: Note,
-  onDelete: (id: string) => void
+  onDelete: (id: string) => Promise<void>
   onArchive: (id: string, status: boolean) => Promise<void>
 }
 

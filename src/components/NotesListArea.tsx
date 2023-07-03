@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 type props = {
   notes: Notes,
   searchQuery: string,
-  onDelete: (id: string) => void
+  onDelete: (id: string) => Promise<void>
   onArchive: (id: string, status: boolean) => Promise<void>
   isArchivePage?: boolean
 }
@@ -23,7 +23,9 @@ function NotesListArea({ notes, searchQuery, onDelete, onArchive, isArchivePage 
   const noNotesContent = (
     <div className="splash-message">
       <h1>{isArchivePage ? `Arsip` : `Catatan`} Kosong</h1>
-      {!isArchivePage && <p>Yuk, <Link to='/new'>buat baru!</Link> </p>}
+      {!isArchivePage ?
+        <p>Yuk, <Link to='/new'>buat baru!</Link> </p> :
+        <p> Kembali ke <Link to='/'>halaman utama</Link></p>}
     </div>
   )
 
