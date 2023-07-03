@@ -16,6 +16,7 @@ type props = {
 
 function NoteItem({ note, onDelete, onArchive }: props) {
   const [warning, setWarning] = useState("")
+  const [underline, setUnderline] = useState("")
 
   function onMouseEnter() {
     setWarning("red-bg")
@@ -26,12 +27,20 @@ function NoteItem({ note, onDelete, onArchive }: props) {
   }
 
   return (
-    <div className={`note ${warning}`}>
-      <h1><Link to={`/note/${note.id}`}>{note.title}</Link></h1>
-      <h3>{showFormattedDate(note.createdAt)}</h3>
-      <p>{note.body}</p>
+    <div
+      className={`note ${warning}`}
+      onMouseEnter={() => setUnderline('underline')}
+      onMouseLeave={() => setUnderline('')}>
+      <Link to={`/note/${note.id}`}>
+        <h1 className={underline}>{note.title}</h1>
+        <h3>{showFormattedDate(note.createdAt)}</h3>
+        <p>{note.body}</p>
+      </Link>
       <DeleteButton id={note.id} onDelete={onDelete} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />
-      <ArchiveButton id={note.id} onArchive={onArchive} archiveStatus={note.archived} />
+      <ArchiveButton
+        id={note.id}
+        onArchive={onArchive}
+        archiveStatus={note.archived} />
     </div>
   )
 }

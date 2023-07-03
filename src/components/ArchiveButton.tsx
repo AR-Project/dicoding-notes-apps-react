@@ -1,4 +1,6 @@
 import "../styles/ArchiveButton.css"
+import { MdArchive, MdUnarchive } from 'react-icons/md'
+
 import PropTypes from 'prop-types';
 
 type props = {
@@ -12,7 +14,7 @@ function ArchiveButton({ id, onArchive, archiveStatus }: props) {
     <button
       className='notes-item_archive'
       onClick={() => onArchive(id, archiveStatus)}>
-      <i className="fa-solid fa-box-archive fa-lg"></i>
+      {archiveStatus ? <MdUnarchive className="archive-btn" /> : <MdArchive className="archive-btn" />}
     </button>
   )
 }

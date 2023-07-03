@@ -7,9 +7,10 @@ article {
 
 article a {
   width: fit-content;
-  padding: 15px 25px;
-  background-color: rgba(128, 128, 128, 0.101);
-  border-radius: 5px;
+  /* padding: 15px 25px; */
+  /* background-color: rgba(128, 128, 128, 0.101); */
+  border-radius: 25px;
+  padding-right: 20px;
   margin-bottom: 10px;
   text-decoration: none;
   transition: 100ms ease-in-out;
@@ -19,9 +20,6 @@ article a:hover {
   background-color: rgba(128, 128, 128, 0.405);
 }
 
-a>i {
-  padding-right: 20px;
-}
 
 article h1 {
   color: white;
@@ -36,4 +34,25 @@ article h3 {
 
 article p {
   margin-bottom: 10px;
+}
+
+.note-action {
+  display: flex;
+  align-items: baseline;
+}
+
+.back-btn-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.back-btn {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  padding: 7px;
+  border-radius: 50%;
+  background-color: rgba(121, 121, 121, 0.23);
+  margin-right: 12px;
 }

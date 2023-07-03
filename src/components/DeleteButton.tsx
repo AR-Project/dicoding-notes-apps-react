@@ -1,5 +1,6 @@
 import "../styles/DeleteButton.css"
 import PropTypes from 'prop-types';
+import { MdDelete } from 'react-icons/md'
 
 type props = {
   id: string,
@@ -15,7 +16,7 @@ function DeleteButton({ id, onDelete, onMouseEnter, onMouseLeave }: props) {
       onClick={() => onDelete(id)}
       onMouseEnter={() => onMouseEnter !== undefined && onMouseEnter()}
       onMouseLeave={() => onMouseLeave !== undefined && onMouseLeave()}>
-      <i className="fa-solid fa-trash fa-lg" ></i>
+      <MdDelete className="delete-btn" />
     </button>
   )
 }

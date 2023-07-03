@@ -19,6 +19,10 @@
   font-size: 0.85rem;
 }
 
+.note a {
+  text-decoration: none;
+}
+
 .note h3 {
   font-style: italic;
   font-size: 1rem;
@@ -30,4 +34,13 @@
 .red-bg {
   transition: 150ms ease-in-out;
   background-color: rgba(255, 165, 165, 0.17);
+}
+
+.yellow-bg {
+  transition: 150ms ease-in-out;
+  background-color: rgba(250, 255, 165, 0.17);
+}
+
+.underline {
+  text-decoration: underline;
 }
