@@ -11,7 +11,7 @@ type props = {
 
 function Login({ loginSuccess }: props) {
 
-  async function onLogin({ email, password }: LoginPayload) {
+  async function loginHandler({ email, password }: LoginPayload) {
     const { error, data } = await login({ email, password });
 
     if (!error) {
@@ -23,7 +23,7 @@ function Login({ loginSuccess }: props) {
     <div className="container" id='login-page'>
 
       <h1>Login</h1>
-      <LoginInput onLogin={onLogin} />
+      <LoginInput login={loginHandler} />
 
       <p>Belum punya akun? <Link to='/register'>Daftar</Link>
       </p>

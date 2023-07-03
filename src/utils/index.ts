@@ -161,3 +161,13 @@ export async function deleteNote(id: string) {
 
   return { error: false, data: responseJson.data };
 }
+
+export function showFormattedDate(date: string): string {
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  } as const
+  return new Date(date).toLocaleDateString("id-ID", options)
+}

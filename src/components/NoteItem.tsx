@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 type props = {
   note: Note,
   onDelete: (id: string) => void
-  onArchive: (id: string) => void
+  onArchive: (id: string, status: boolean) => Promise<void>
 }
 
 function NoteItem({ note, onDelete, onArchive }: props) {
@@ -31,7 +31,7 @@ function NoteItem({ note, onDelete, onArchive }: props) {
       <h3>{showFormattedDate(note.createdAt)}</h3>
       <p>{note.body}</p>
       <DeleteButton id={note.id} onDelete={onDelete} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />
-      <ArchiveButton id={note.id} onArchive={onArchive} />
+      <ArchiveButton id={note.id} onArchive={onArchive} archiveStatus={note.archived} />
     </div>
   )
 }

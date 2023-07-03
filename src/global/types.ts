@@ -50,3 +50,7 @@ export type IauthedUser = {
   name: string
   email: string
 }
+
+export type accessTokenPayload = {
+  accessToken: string
+}

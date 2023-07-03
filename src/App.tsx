@@ -11,9 +11,10 @@ import NoteDetails from './pages/NoteDetails'
 import ArchivePage from './pages/Archived'
 import PageNotFound from './pages/PageNotFound'
 
-import { HandleChangeEvent, IauthedUser } from './global/types'
+import { HandleChangeEvent, IauthedUser, accessTokenPayload } from './global/types'
 
 import { putAccessToken, getUserLogged } from './utils'
+import LoadingSpinner from './components/LoadingSpinner'
 
 function App() {
   const [authedUser, setAuthedUser] = useState<IauthedUser | null>(null)
@@ -23,8 +24,6 @@ function App() {
   const title = searchParams.get('title');
 
   const [query, setQuery] = useState(title !== null ? title : "")
-
-  const username = authedUser !== null ? authedUser.name : ''
 
   function changeSearchParams(keyword: string) {
     setSearchParams({ title: keyword })
@@ -39,9 +38,9 @@ function App() {
     setQuery("")
   }
 
-  async function onLoginSuccess({ accessToken }: { accessToken: string }) {
+  async function onLoginSuccess({ accessToken }: accessTokenPayload) {
     putAccessToken(accessToken);
-    const { data } = await getUserLogged();
+    const { data } = await getUserLogged(); // Fetch user info
     setAuthedUser(data);
   }
 
@@ -62,8 +61,7 @@ function App() {
     return <>
       <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} />
       <div className="container">
-        <h1>loading</h1>
-
+        <LoadingSpinner />
       </div>
     </>
   }
@@ -83,15 +81,16 @@ function App() {
 
   return (
     <>
-      <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} username={username} />
+      <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} username={authedUser.name} />
       <main>
+
         <Routes>
-          <Route path='/' element={<div className='container'><h2>Dalam pengembangan</h2></div>} />
-          {/* <Route path="/" element={<Homepage query={query} />} />
-          <Route path="/new" element={<NewNote />} />
+          <Route path="/" element={<Homepage query={query} />} />
+          {/*<Route path="/new" element={<NewNote />} />
           <Route path="/note/:id" element={<NoteDetails />} />
+                     */}
           <Route path="/archive" element={<ArchivePage query={query} />} />
-           */}
+
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>

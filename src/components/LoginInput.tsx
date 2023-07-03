@@ -6,10 +6,10 @@ import { LoginPayload } from '../global/types'
 import "../styles/LoginInputForm.css"
 
 type props = {
-  onLogin({ email, password }: LoginPayload): Promise<void>
+  login({ email, password }: LoginPayload): Promise<void>
 }
 
-function LoginInput({ onLogin }: props) {
+function LoginInput({ login }: props) {
   const DEFAULT_LOGIN_PAYLOAD_STATE: LoginPayload = {
     email: "",
     password: "",
@@ -29,8 +29,7 @@ function LoginInput({ onLogin }: props) {
   }
   function onSubmitHandler(event: PreventDefault) {
     event.preventDefault()
-    onLogin(loginPayload)
-    console.log(loginPayload);
+    login(loginPayload)
   }
 
   return (
@@ -59,7 +58,7 @@ function LoginInput({ onLogin }: props) {
 }
 
 LoginInput.propTypes = {
-  onLogin: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired
 }
 
 export default LoginInput

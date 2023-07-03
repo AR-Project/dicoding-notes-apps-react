@@ -8,7 +8,7 @@ type props = {
   notes: Notes,
   searchQuery: string,
   onDelete: (id: string) => void
-  onArchive: (id: string) => void
+  onArchive: (id: string, status: boolean) => Promise<void>
   isArchivePage?: boolean
 }
 
@@ -23,7 +23,7 @@ function NotesListArea({ notes, searchQuery, onDelete, onArchive, isArchivePage 
   const noNotesContent = (
     <div className="splash-message">
       <h1>{isArchivePage ? `Arsip` : `Catatan`} Kosong</h1>
-      <p>Yuk, <Link to='/new'>buat baru!</Link> </p>
+      {!isArchivePage && <p>Yuk, <Link to='/new'>buat baru!</Link> </p>}
     </div>
   )
 

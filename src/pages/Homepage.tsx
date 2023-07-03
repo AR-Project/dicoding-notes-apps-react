@@ -1,29 +1,48 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 
-import { deleteNote, changeNoteArchiveStatus, getActiveNotes } from '../utils'
+import { archiveNote, deleteNote, getActiveNotes, unarchiveNote } from '../utils'
 import NotesListArea from '../components/NotesListArea'
+import LoadingSpinner from '../components/LoadingSpinner';
 
 type props = {
   query: string,
 }
 
 function Homepage({ query }: props) {
-  const [notes, setNotes] = useState(getActiveNotes())
+  const [notes, setNotes] = useState([])
+  const [initializing, setInitializing] = useState(true)
 
-  function onDelete(id: string): void {
-    deleteNote(id)
-    setNotes(() => getActiveNotes())
+  async function onDelete(id: string): Promise<void> {
+    await deleteNote(id)
+    const { data } = await getActiveNotes()
+    setNotes(data)
   }
 
-  function onArchive(id: string): void {
-    changeNoteArchiveStatus(id)
-    setNotes(() => getActiveNotes())
+  async function onArchive(id: string, status: boolean): Promise<void> {
+    status ? await unarchiveNote(id) : await archiveNote(id)
+    const { data } = await getActiveNotes()
+    setNotes(data)
   }
+
+  useEffect(() => {
+    getActiveNotes().then(({ data }) => {
+      setNotes(data)
+      setInitializing(false)
+    })
+
+  }, [])
+
 
   return (
     <>
-      <NotesListArea notes={notes != undefined ? notes : []} searchQuery={query} onDelete={onDelete} onArchive={onArchive} />
+      {initializing ?
+        <LoadingSpinner /> :
+        <NotesListArea
+          notes={notes != undefined ? notes : []}
+          searchQuery={query}
+          onDelete={onDelete}
+          onArchive={onArchive} />}
     </>
   )
 }
