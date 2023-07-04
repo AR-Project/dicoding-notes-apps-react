@@ -1,9 +1,11 @@
-import { useState } from 'react'
-import { RegisterPayload } from '../global/types'
-import { PreventDefault, HandleChangeEvent } from '../global/types'
+import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { RegisterPayload, PreventDefault, HandleChangeEvent, LocaleContextValue } from '../global/types'
+import { registerContent } from '../utils/content'
 
 import "../styles/RegisterInputForm.css"
-import { useNavigate } from 'react-router-dom'
+import LocaleContext from '../context/LocaleContext'
 
 type props = {
   register: (payload: RegisterPayload) => Promise<void>
@@ -11,6 +13,7 @@ type props = {
 
 export default function RegisterInput({ register }: props) {
   const navigate = useNavigate()
+  const { locale } = useContext(LocaleContext) as LocaleContextValue
   const DEFAULT_REGISTER_INPUT_STATE: RegisterPayload = {
     name: "",
     email: "",
@@ -41,7 +44,7 @@ export default function RegisterInput({ register }: props) {
     <form onSubmit={onSubmitHandler} id='register-input-form'>
       <input
         type="text"
-        placeholder="Nama"
+        placeholder={registerContent[locale].name}
         onChange={handleChange}
         id="name"
         name="name"
@@ -58,7 +61,7 @@ export default function RegisterInput({ register }: props) {
 
       <input
         type="password"
-        placeholder="Password"
+        placeholder={registerContent[locale].password}
         autoComplete='current-password'
         id="password"
         name="password"
@@ -68,12 +71,12 @@ export default function RegisterInput({ register }: props) {
       <input
         type="password"
         id="confirm-password"
-        placeholder="Confirm Password"
+        placeholder={registerContent[locale].confirmPassword}
         autoComplete='current-password'
       />
 
 
-      <button type='submit' id='submit'>Daftar</button>
+      <button type='submit' id='submit'>{registerContent[locale].submit}</button>
     </form>
   )
 }

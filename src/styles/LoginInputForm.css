@@ -10,7 +10,7 @@
 #login-input-form #email,
 #login-input-form #submit,
 #login-input-form #password {
-  background-color: #1a222c;
+  background-color: var(--bg-main-input);
   padding: 7px;
   border-radius: 5px;
   border: 1px rgba(255, 255, 255, 0.414) solid;
@@ -23,11 +23,11 @@
   cursor: pointer;
   height: 50px;
   color: white;
-  background-color: #382113;
+  background-color: var(--orange-accent);
   transition: 80ms ease-in-out;
   margin-bottom: 10px;
 }
 
 #login-input-form #submit:hover {
-  background-color: #623e27;
+  background-color: var(--orange-accent-highlight);
 }

@@ -17,9 +17,12 @@ import ArchivePage from './pages/Archived'
 import PageNotFound from './pages/PageNotFound'
 
 import { ThemeProvider } from './context/ThemeContext'
+import { LocaleProvider } from './context/LocaleContext'
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
+  const [locale, setLocale] = useState(localStorage.getItem('locale') || 'id')
+
   const [authedUser, setAuthedUser] = useState<IauthedUser | null>(null)
   const [initializing, setInitializing] = useState(true)
 
@@ -60,6 +63,21 @@ function App() {
     })
   }
 
+  function toggleLocale() {
+    setLocale((prev) => {
+      const newLocale = prev === 'id' ? 'en' : 'id'
+      localStorage.setItem('locale', newLocale)
+      return newLocale
+    })
+  }
+
+  const localeContextValue = useMemo(() => {
+    return {
+      locale,
+      toggleLocale
+    };
+  }, [locale])
+
   const themeContextValue = useMemo(() => {
     return {
       theme,
@@ -80,47 +98,53 @@ function App() {
 
   if (initializing === true) {
     return <>
-      <ThemeProvider value={themeContextValue}>
-        <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} />
-        <main>
-          <div className="container">
-            <LoadingSpinner />
-          </div>
-        </main>
-      </ThemeProvider>
+      <LocaleProvider value={localeContextValue}>
+        <ThemeProvider value={themeContextValue}>
+          <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} />
+          <main>
+            <div className="container">
+              <LoadingSpinner />
+            </div>
+          </main>
+        </ThemeProvider>
+      </LocaleProvider>
     </>
   }
 
   if (authedUser == null) {
     return (
       <>
-        <ThemeProvider value={themeContextValue}>
-          <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} />
-          <main>
-            <Routes>
-              <Route path='/*' element={<Login loginSuccess={onLoginSuccess} />} />
-              <Route path='/register' element={<Register />} />
-            </Routes>
-          </main>
-        </ThemeProvider>
+        <LocaleProvider value={localeContextValue}>
+          <ThemeProvider value={themeContextValue}>
+            <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} />
+            <main>
+              <Routes>
+                <Route path='/*' element={<Login loginSuccess={onLoginSuccess} />} />
+                <Route path='/register' element={<Register />} />
+              </Routes>
+            </main>
+          </ThemeProvider>
+        </LocaleProvider>
       </>
     )
   }
 
   return (
     <>
-      <ThemeProvider value={themeContextValue}>
-        <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} username={authedUser.name} />
-        <main>
-          <Routes>
-            <Route path="/" element={<Homepage query={query} />} />
-            <Route path="/new" element={<NewNote />} />
-            <Route path="/note/:id" element={<NoteDetails />} />
-            <Route path="/archive" element={<ArchivePage query={query} />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </main>
-      </ThemeProvider>
+      <LocaleProvider value={localeContextValue}>
+        <ThemeProvider value={themeContextValue}>
+          <Navigation onSearchActive={onSearchActive} query={query} clearQuery={clearQuery} authedUser={authedUser} onLogout={onLogout} username={authedUser.name} />
+          <main>
+            <Routes>
+              <Route path="/" element={<Homepage query={query} />} />
+              <Route path="/new" element={<NewNote />} />
+              <Route path="/note/:id" element={<NoteDetails />} />
+              <Route path="/archive" element={<ArchivePage query={query} />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </main>
+        </ThemeProvider>
+      </LocaleProvider>
     </>
   )
 }

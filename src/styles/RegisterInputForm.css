@@ -12,7 +12,7 @@
 #register-input-form #password,
 #register-input-form #confirm-password,
 #register-input-form #submit {
-  background-color: #1a222c;
+  background-color: var(--bg-main-input);
   padding: 7px;
   border-radius: 5px;
   border: 1px rgba(255, 255, 255, 0.414) solid;
@@ -24,11 +24,11 @@
   cursor: pointer;
   height: 50px;
   color: white;
-  background-color: #382113;
+  background-color: var(--orange-accent);
   transition: 140ms ease-in-out;
   margin-bottom: 10px;
 }
 
 #register-input-form #submit:hover {
-  background-color: #55331d;
+  background-color: var(--orange-accent-highlight);
 }

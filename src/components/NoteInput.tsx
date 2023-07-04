@@ -1,7 +1,10 @@
-import { useState } from 'react'
-import { PreventDefault, HandleChangeEvent } from '../global/types'
-import { NoteContent } from '../global/types'
+import { useState, useContext } from 'react'
 import PropTypes from 'prop-types';
+import { PreventDefault, HandleChangeEvent, LocaleContextValue } from '../global/types'
+import { NoteContent } from '../global/types'
+import LocaleContext from '../context/LocaleContext';
+import { newNote } from '../utils/content';
+
 import '../styles/NoteInput.css'
 
 type props = {
@@ -9,6 +12,8 @@ type props = {
 }
 
 function NoteInput({ addNote }: props) {
+  const { locale } = useContext(LocaleContext) as LocaleContextValue
+
   const DEFAULT_NOTE_STATE: NoteContent = {
     title: "",
     body: ""
@@ -39,12 +44,12 @@ function NoteInput({ addNote }: props) {
     <form onSubmit={onSubmitHandler} id='note-input-form'>
       {currentNote.title.length > 5 &&
         <div className={`warning ${currentNote.title.length > 40 && 'red'}`}>
-          {TITLE_MAX_LENGTH - currentNote.title.length} karakter tersisa
+          {TITLE_MAX_LENGTH - currentNote.title.length} {newNote[locale].charLeft}
         </div>
       }
       <input
         type="text"
-        placeholder="Title"
+        placeholder={newNote[locale].title}
         onChange={handleChange}
         id="title"
         name="title"
@@ -53,13 +58,13 @@ function NoteInput({ addNote }: props) {
       />
 
       <textarea
-        placeholder='Tuliskan Catatanmu Disini'
+        placeholder={newNote[locale].body}
         onChange={handleChange}
         name='body'
         id='body'
         value={currentNote.body}
       />
-      <button type='submit' id='submit'>Simpan Catatan</button>
+      <button type='submit' id='submit'>{newNote[locale].save}</button>
     </form>
   )
 }

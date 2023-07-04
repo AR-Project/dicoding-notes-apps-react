@@ -1,0 +1,11 @@
+.locale-toggle-btn {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-color: var(--bg-main);
+  border: none;
+  border-radius: 50%;
+  font-size: 0.6rem;
+  font-weight: 900;
+  color: var(--font-color);
+}

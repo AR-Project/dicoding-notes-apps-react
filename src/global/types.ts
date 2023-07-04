@@ -60,3 +60,7 @@ export type ThemeContextValue = {
   theme: string
   toggleTheme: () => void
 }
+export type LocaleContextValue = {
+  locale: string
+  toggleLocale: () => void
+}

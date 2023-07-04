@@ -1,9 +1,15 @@
+import { useContext } from 'react'
+
 import { HandleChangeEvent, IauthedUser } from '../global/types'
 import { Link, useLocation } from 'react-router-dom'
 import "../styles/Navigation.css"
 import PropTypes from 'prop-types';
 import ThemeToggleButton from './ThemeToggleButton';
-import { MdAdd, MdPersonPin } from 'react-icons/md'
+import LocaleToggleButton from './LocaleToggleButton';
+import { MdAdd, MdPersonPin } from 'react-icons/md';
+import { nav } from '../utils/content'
+import LocaleContext from '../context/LocaleContext';
+import { LocaleContextValue } from '../global/types';
 
 type props = {
   onSearchActive: (event: HandleChangeEvent) => void
@@ -15,6 +21,7 @@ type props = {
 }
 
 function Navigation({ onSearchActive, query, clearQuery, authedUser, onLogout, username }: props) {
+  const { locale } = useContext(LocaleContext) as LocaleContextValue
   const location = useLocation()
 
   const enabledSearchLocation = ["/", "/archive"]
@@ -28,7 +35,7 @@ function Navigation({ onSearchActive, query, clearQuery, authedUser, onLogout, u
             type="text"
             name="search"
             id="search"
-            placeholder='Cari Catatan'
+            placeholder={nav[locale].search}
             onChange={onSearchActive}
             value={query} />
           {query.length !== 0 &&
@@ -54,16 +61,16 @@ function Navigation({ onSearchActive, query, clearQuery, authedUser, onLogout, u
         <ul>
           {authedUser === null ?
             <>
-              <Link to="/register">Register</Link>
+              <Link to="/register">{nav[locale].register}</Link>
             </> :
             <>
               <li>
                 <Link onClick={() => clearQuery()} to="/new" className='new-note-btn' >
-                  <MdAdd className="new-note-btn-icon" /> Baru
+                  <MdAdd className="new-note-btn-icon" /> {nav[locale].new}
                 </Link>
               </li>
               <li>
-                <Link onClick={() => clearQuery()} to="/archive">Archive</Link>
+                <Link onClick={() => clearQuery()} to="/archive">{nav[locale].archive}</Link>
               </li>
 
             </>
@@ -83,6 +90,7 @@ function Navigation({ onSearchActive, query, clearQuery, authedUser, onLogout, u
         <div className="web-utils">
           {displaySearchBox()}
           <ThemeToggleButton />
+          <LocaleToggleButton />
         </div>
 
       </div>

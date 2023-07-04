@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
-import { HandleChangeEvent, PreventDefault } from '../global/types'
+
+import { HandleChangeEvent, LocaleContextValue, PreventDefault } from '../global/types'
 import { LoginPayload } from '../global/types'
+import { loginContent } from '../utils/content'
 
 import "../styles/LoginInputForm.css"
+import LocaleContext from '../context/LocaleContext'
 
 type props = {
   login({ email, password }: LoginPayload): Promise<void>
@@ -14,6 +17,8 @@ function LoginInput({ login }: props) {
     email: "",
     password: "",
   }
+
+  const { locale } = useContext(LocaleContext) as LocaleContextValue
 
   const [loginPayload, setLoginPayload] = useState(DEFAULT_LOGIN_PAYLOAD_STATE)
 
@@ -45,14 +50,14 @@ function LoginInput({ login }: props) {
 
       <input
         type="password"
-        placeholder="Password"
+        placeholder={loginContent[locale].password}
         autoComplete='current-password'
         id="password"
         name="password"
         value={loginPayload.password}
         onChange={handleChange} />
 
-      <button type='submit' id='submit'>Masuk</button>
+      <button type='submit' id='submit'>{loginContent[locale].signIn}</button>
     </form>
   )
 }
