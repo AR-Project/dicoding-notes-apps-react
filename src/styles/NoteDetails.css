@@ -22,7 +22,7 @@ article a:hover {
 
 
 article h1 {
-  color: white;
+  color: var(--font-color-main);
 }
 
 article h3 {

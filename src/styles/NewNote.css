@@ -3,5 +3,5 @@
     font-size: 3rem;
     line-height: 2rem;
     padding-bottom: 20px;
-    color: white;
+    color: var(--font-color-main);
   }

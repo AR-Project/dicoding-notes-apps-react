@@ -55,3 +55,8 @@ export type IauthedUser = {
 export type accessTokenPayload = {
   accessToken: string
 }
+
+export type ThemeContextValue = {
+  theme: string
+  toggleTheme: () => void
+}

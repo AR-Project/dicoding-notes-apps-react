@@ -2,6 +2,7 @@ import { HandleChangeEvent, IauthedUser } from '../global/types'
 import { Link, useLocation } from 'react-router-dom'
 import "../styles/Navigation.css"
 import PropTypes from 'prop-types';
+import ThemeToggleButton from './ThemeToggleButton';
 
 type props = {
   onSearchActive: (event: HandleChangeEvent) => void
@@ -72,7 +73,11 @@ function Navigation({ onSearchActive, query, clearQuery, authedUser, onLogout, u
           </>
         }
       </ul>
-      {displaySearchBox()}
+      <div className="nav-right-container">
+        <ThemeToggleButton />
+        {displaySearchBox()}
+
+      </div>
     </header>
   )
 }

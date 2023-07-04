@@ -1,11 +1,12 @@
 header {
-  background-color: #1b222d;
+  background-color: var(--bg-secondary);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   height: 50px;
   padding: 0 20px;
+  transition: 150ms ease-in-out;
 }
 
 header h1 {
@@ -47,11 +48,16 @@ header li a {
 
 #search {
   width: 300px;
-  font-size: 1.1rem;
-  background-color: #3f4b5e;
+  font-size: 1rem;
+  color: var(--bg-main);
+  background-color: var(--bg-tertier);
   border: 1px solid #5f6d82;
   border-radius: 5px;
   padding: 7px 15px;
+}
+
+#search::placeholder {
+  color: var(--font-color-content);
 }
 
 #search-form {
@@ -75,15 +81,15 @@ header li a {
 
 .logout-btn {
   padding: 6px 8px;
-  background-color: #1b222d;
-  border: 1px solid #825f60;
+  background-color: #1b222d00;
+  border: 1px solid #825f602b;
   border-radius: 3px;
   cursor: pointer;
 }
 
 .logout-btn,
 .logout-btn>i {
-  color: rgba(255, 142, 142, 0.249)
+  color: var(--red-accent)
 }
 
 .new-note-btn {
@@ -95,6 +101,13 @@ header li a {
 .new-note-btn>i {
   color: orange;
   padding-right: 5px
+}
+
+.nav-right-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 
 @media screen and (max-width: 1024px) {

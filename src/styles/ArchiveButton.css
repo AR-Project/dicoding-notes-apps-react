@@ -12,11 +12,13 @@
 }
 
 .notes-item_archive:hover {
-  border: 1px rgba(255, 245, 165, 0.314) solid;
-  background-color: rgba(247, 255, 177, 0.202);
+  border: 1px var(--yellow-accent-border) solid;
+  background-color: var(--yellow-accent);
 }
 
 .archive-btn {
-  fill: rgba(240, 240, 240, 0.344);
+  fill: var(--font-color-content);
+  opacity: 0.4;
   transform: translateY(2px);
+
 }

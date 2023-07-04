@@ -10,7 +10,7 @@ type props = {
 }
 
 function NoteList({ componentTitle, notes, onDelete, onArchive }: props) {
-  function notesMapper(notes: Notes): JSX.Element[] {
+  function notesMapper(notes: Notes) {
     return notes.map((note) => (
       <div key={note.id} >
         <NoteItem note={note} onDelete={onDelete} onArchive={onArchive} />
@@ -37,6 +37,7 @@ NoteList.propTypes = {
       body: PropTypes.string.isRequired,
       createdAt: PropTypes.string.isRequired,
       archived: PropTypes.bool.isRequired,
+      owner: PropTypes.string.isRequired
     })
   ),
   onDelete: PropTypes.func.isRequired,

@@ -1,0 +1,13 @@
+.theme-toggle-btn {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-color: var(--bg-main);
+  border: none;
+  border-radius: 50%;
+}
+
+.theme-toggle-icon {
+  fill: var(--font-color);
+  transform: translateY(10%);
+}
