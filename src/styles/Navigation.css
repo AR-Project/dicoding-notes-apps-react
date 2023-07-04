@@ -1,20 +1,44 @@
+.db {
+  border: 1px solid var(--red-accent);
+}
+
 header {
   background-color: var(--bg-secondary);
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
-  padding: 0 20px;
+  /* height: 50px; */
+  padding: 10px 20px;
   transition: 150ms ease-in-out;
 }
 
-header h1 {
+.header-left-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px
+}
+
+.logo {
+  margin-right: 10px;
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+.logo h1 {
   font-size: 1.2rem;
   line-height: 0.7rem;
-  text-decoration: none;
-  transform: translateY(13%);
+  /* transform: translateY(13%); */
 }
+
+.cursive {
+  font-family: 'Niconne', cursive;
+  font-size: 2rem;
+}
+
 
 .vertical-lines {
   height: 25px;
@@ -23,11 +47,11 @@ header h1 {
 }
 
 header ul {
-  transform: translateY(-10%);
+  /* transform: translateY(-10%); */
   display: flex;
-  gap: 30px;
+  gap: 10px;
   flex-direction: row;
-  align-items: baseline;
+  /* align-items: baseline; */
 }
 
 header li {
@@ -41,10 +65,7 @@ header li a {
 
 }
 
-.cursive {
-  font-family: 'Niconne', cursive;
-  font-size: 2rem;
-}
+
 
 #search {
   width: 300px;
@@ -93,21 +114,38 @@ header li a {
 }
 
 .new-note-btn {
+  position: relative;
+  align-items: baseline;
   color: orange;
   border-radius: 5px;
-  padding: 5px
+  /* padding: 5px; */
+  padding-left: 20px;
+  /* border: 1px solid orange; */
 }
 
-.new-note-btn>i {
-  color: orange;
+.new-note-btn-icon {
+  position: absolute;
+  fill: orange;
+  font-weight: 900;
+  left: 0;
+  top: -3px;
+  font-size: 22px;
   padding-right: 5px
 }
 
-.nav-right-container {
+.header-right-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
+}
+
+.user-info,
+.web-utils {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -120,6 +158,16 @@ header li a {
   #search {
     width: 150px;
     font-size: 0.8rem;
+  }
 
+  header {
+    padding-top: 20px;
+    gap: 10px;
+  }
+
+  .header-left-container,
+  .header-right-container {
+    justify-content: space-between;
+    width: 100%;
   }
 }

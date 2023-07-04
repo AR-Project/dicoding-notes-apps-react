@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import "../styles/Navigation.css"
 import PropTypes from 'prop-types';
 import ThemeToggleButton from './ThemeToggleButton';
+import { MdAdd, MdPersonPin } from 'react-icons/md'
 
 type props = {
   onSearchActive: (event: HandleChangeEvent) => void
@@ -42,40 +43,47 @@ function Navigation({ onSearchActive, query, clearQuery, authedUser, onLogout, u
 
   return (
     <header>
-      <ul>
-        <li>
+      <div className="header-left-container">
+        <div className="logo ">
           <Link
             onClick={() => clearQuery()}
             to="/">
             <h1>ter-<span className="cursive"> Catat</span></h1>
           </Link>
-        </li>
-        <div className="vertical-lines"></div>
+        </div>
+        <ul>
+          {authedUser === null ?
+            <>
+              <Link to="/register">Register</Link>
+            </> :
+            <>
+              <li>
+                <Link onClick={() => clearQuery()} to="/new" className='new-note-btn' >
+                  <MdAdd className="new-note-btn-icon" /> Baru
+                </Link>
+              </li>
+              <li>
+                <Link onClick={() => clearQuery()} to="/archive">Archive</Link>
+              </li>
 
-        {authedUser === null ?
-          <>
-            <Link to="/register">Register</Link>
-          </> :
-          <>
-            <p>Hallo, {username}!</p>
-            <li>
-              <Link onClick={() => clearQuery()} to="/new" className='new-note-btn' >
-                <i className="fa-regular fa-square-plus"></i>
-                Buat Catatan
-              </Link>
-            </li>
-            <li>
-              <Link onClick={() => clearQuery()} to="/archive">Archive</Link>
-            </li>
-            <li><button className='logout-btn' onClick={onLogout}>
-              <i className="fa-solid fa-right-from-bracket"></i> Keluar
-            </button></li>
-          </>
-        }
-      </ul>
-      <div className="nav-right-container">
-        <ThemeToggleButton />
-        {displaySearchBox()}
+            </>
+          }
+        </ul>
+      </div>
+
+      <div className="header-right-container">
+        {authedUser !== null && <div className='user-info'>
+          <p><MdPersonPin />{username}</p>
+          <div className="group"></div>
+          <li><button className='logout-btn' onClick={onLogout}>
+            <i className="fa-solid fa-right-from-bracket"></i>
+          </button></li>
+        </div>}
+
+        <div className="web-utils">
+          {displaySearchBox()}
+          <ThemeToggleButton />
+        </div>
 
       </div>
     </header>

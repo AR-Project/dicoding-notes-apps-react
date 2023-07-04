@@ -10,7 +10,8 @@
 }
 
 #note-input-form {
-  width: 600px;
+  max-width: 600px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
